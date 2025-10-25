@@ -30,12 +30,15 @@ public class UserController {
         return "allUsers";
     }
 
-    @PostMapping ("/add") // добавление юзера
+    @PostMapping("/add") // добавление юзера
     public String addUser(
             @RequestParam("name") String name,
             @RequestParam("lastname") String lastName,
             @RequestParam("age") Byte age) {
-        User user = new User(name, lastName, age);
+        User user = new User();
+        user.setName(name);
+        user.setLastName(lastName);
+        user.setAge(age);
         userService.save(user);
         return "redirect:/";
     }
@@ -54,12 +57,12 @@ public class UserController {
             @RequestParam("name") String name,
             @RequestParam("lastname") String lastName,
             @RequestParam("age") Byte age) {
-        User user = userService.findById(id);
-        user.setName(name);
+        User user = new User();
+        user.setId(id);
         user.setLastName(lastName);
+        user.setName(name);
         user.setAge(age);
         userService.update(user);
-
         return "redirect:/";
     }
 }
