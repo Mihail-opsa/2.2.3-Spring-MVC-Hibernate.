@@ -12,5 +12,7 @@ public interface UserService {
     List<User> findAll(); //Получение всех пользователей из базы данных
     User findById(Long id);//оиск пользователя по уникальному идентификатору
 
+    void updateUser (Long id, String name, String lastName,  Byte age);
+    void createUser(String name, String lastName, Byte age);
 
 }

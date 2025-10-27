@@ -35,11 +35,8 @@ public class UserController {
             @RequestParam("name") String name,
             @RequestParam("lastname") String lastName,
             @RequestParam("age") Byte age) {
-        User user = new User();
-        user.setName(name);
-        user.setLastName(lastName);
-        user.setAge(age);
-        userService.save(user);
+        userService.createUser(name, lastName, age);
+
         return "redirect:/";
     }
 
@@ -50,19 +47,14 @@ public class UserController {
         return "redirect:/";
     }
 
-
+// убранан вся бизнес логика
     @PostMapping("/update")
     public String updateUser(
             @RequestParam("id") Long id,
             @RequestParam("name") String name,
             @RequestParam("lastname") String lastName,
             @RequestParam("age") Byte age) {
-        User user = new User();
-        user.setId(id);
-        user.setLastName(lastName);
-        user.setName(name);
-        user.setAge(age);
-        userService.update(user);
+            userService.updateUser(id, name, lastName, age);
         return "redirect:/";
     }
 }
